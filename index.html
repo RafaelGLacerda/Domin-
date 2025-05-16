@@ -2,40 +2,60 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Dominó - 4 Jogadores</title>
+  <title>Dominó</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Dominó - 4 Jogadores</h1>
-<div class="controls">
-  <label for="numPlayers">Jogadores:</label>
-  <select id="numPlayers">
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4" selected>4</option>
-  </select>
+
+  <!-- Tela inicial de nomes -->
+  <div class="setup-screen" id="setup-screen">
+    <h2>Digite os nomes dos jogadores:</h2>
+    <select id="numPlayers">
+      <option value="2">2 Jogadores</option>
+      <option value="3">3 Jogadores</option>
+      <option value="4" selected>4 Jogadores</option>
+    </select>
+    <div id="name-inputs">
+      <input type="text" placeholder="Nome do Jogador 1" id="name-0">
+      <input type="text" placeholder="Nome do Jogador 2" id="name-1">
+      <input type="text" placeholder="Nome do Jogador 3" id="name-2">
+      <input type="text" placeholder="Nome do Jogador 4" id="name-3">
+    </div>
+    <button onclick="confirmNames()">Confirmar nomes</button>
+  </div>
+
+  <!-- Controles principais do jogo -->
+ <div class="controls" id="controls" style="display: none;">
   <button onclick="startGame()">Iniciar/Reiniciar</button>
   <button onclick="drawPiece()">Cavar</button>
   <button onclick="passTurn()">Passar</button>
+  <button onclick="resetGame()">Finalizar</button>
 </div>
 
-<div id="message-box" class="message-box"></div>
+<div id="victory-screen" class="victory-screen" style="display: none;">
+  <h2 id="winner-message"></h2>
+  <button id="finalize-button" onclick="resetGame()">Finalizar</button>
+</div>
 
-<div class="game-container">
-  <div id="player-1"></div>
-  <div id="player-2"></div>
-  <div id="player-3"></div>
-  <div id="player-4"></div>
+  <!-- Área do jogo -->
+  <div class="game-container">
+    <div id="player-1"></div>
+    <div id="player-2"></div>
+    <div id="player-3"></div>
+    <div id="player-4"></div>
 
-  <div class="board" id="board">
-    <div class="drop-zone" id="drop-left">⬅️</div>
-    <div class="pieces-area" id="board-pieces"></div>
-    <div class="drop-zone" id="drop-right">➡️</div>
+    <div id="current-player-name" class="current-player-name">Vez de: Jogador 1</div>
+
+    <div class="board" id="board">
+      <div class="drop-zone" id="drop-left">⬅️</div>
+      <div class="pieces-area" id="board-pieces"></div>
+      <div class="drop-zone" id="drop-right">➡️</div>
+    </div>
   </div>
-</div>
 
 
-  <footer>Você joga por todos os jogadores</footer>
+  <!-- Mensagem temporária -->
+  <div id="message-box" class="message-box"></div>
 
   <script src="script.js"></script>
 </body>
